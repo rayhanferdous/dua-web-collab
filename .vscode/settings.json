@@ -1,0 +1,15 @@
+{
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "prettier.printWidth": 150,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.endOfLine": "lf",
+  "prettier.bracketSpacing": true,
+  "prettier.arrowParens": "always",
+  "html.format.enable": true,
+  "html.format.wrapAttributes": "auto",
+  "html.format.wrapLineLength": 150
+}

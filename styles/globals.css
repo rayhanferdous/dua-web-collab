@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "kgfq";
+  src: url("../public/fonts/KFGQ_hafs.ttf");
+}
+
+body {
+  font-family: 'poppins';
+}
+
+.accent-custom{
+  accent-color: #ffff55;
+  width: 20px;
+  height: 20px;
+}
+
+.collapse-css-transition {
+  transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo {
+  display: block;
+  text-indent: -9999px;
+  width: 100px;
+  height: 82px;
+  background: url('../public/assets/dua-logo.svg');
+  background-size: 100px 82px;
+}
+
+.btn {
+  color: #fff;
+  border-radius: .4rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-outline {
+  padding: 0.4rem;
+  border-radius: .4rem;
+  border: 0.5px solid #cccdcf;
+
+}
+
+.border-x-1 {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+.border-y-1 {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+.border-b-1 {
+  border-bottom-width: 1px;
+}
+
+.home {
+  position: absolute;
+  top: 2.5rem;
+  left: 17.3%;
+  bottom: 0;
+  right: 0;
+}
+
+.ruqyah-player {
+  position: absolute;
+  top: 2.5rem;
+  left: 8.2%;
+  bottom: 0;
+  right: 0;
+}
+
+.home-cat {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.scrl {
+  padding-right: 5px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  
+}
+
+.scrl::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrl::-webkit-scrollbar-track {
+  border-radius: 100px;
+  margin: 7rem 0rem 12rem 0rem;
+}
+
+.scrl:hover::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  background-color: #cccfd2;
+  min-height: 80px;
+}
+input[type='range'] {
+	-webkit-appearance: none;
+	height: 5px;
+  width: 100%;
+	background: #EEEEEE;
+	border-radius: 5px;
+	background-image: linear-gradient(#ff9634, #ffbe81);
+	background-repeat: no-repeat;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 14px;
+	width: 14px;
+	border-radius: 50%;
+	background: #111c99;
+	cursor: pointer;
+	box-shadow: 0 0 2px 0 #555;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	transition: background 0.3s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .mbl-grad{
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%);
+  }
+  .mbl-scrl-home{
+    position: relative;
+    overflow-y: auto;
+    height: calc(100vh - 10px);
+  }
+  .scrl::-webkit-scrollbar-track {
+    margin: 6rem 0rem 12rem 0rem;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1139px) {
+  .scrl::-webkit-scrollbar-track {
+    margin: rem 0rem 6rem 0rem;
+  }
+}
+
+@media (min-width: 1080px) and (max-width: 1139px) {
+  .donate-custom{
+      grid-template-columns: 60% 1fr;
+  }
+}
+
+@media (min-width: 1140px) and (max-width: 1279px) {
+  .scrl::-webkit-scrollbar-track {
+    margin: 10rem 0rem 10rem 0rem;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1639px) {
+  .scrl::-webkit-scrollbar-track {
+    margin: 8rem 0rem 12rem 0rem;
+  }
+}
+
+@media (min-width: 1640px) and (max-width: 1919px) {
+  .scrl::-webkit-scrollbar-track {
+    margin: 8rem 0rem 12rem 0rem;
+  }
+}
+
+@media (min-width: 1920px) {
+ 
+}
+
+
+
