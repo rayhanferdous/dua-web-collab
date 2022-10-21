@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import staticTitles from "../../assets/staticTitles.json";
 import MidCard from "./Component/MidCard";
 
 const MidCat = () => {
+  const language = useSelector((state) => state.language.language);
+  const [titles, setTitles] = useState(JSON.parse(JSON.stringify(staticTitles["homepage"]["en"])));
+
+  useEffect(() => {
+    setTitles(JSON.parse(JSON.stringify(staticTitles["homepage"][language])));
+  }, [language]);
+
   return (
     <div
       className="xs:px-4 xs:absolute
@@ -34,12 +44,12 @@ const MidCat = () => {
       2xl:grid-cols-3
       3xl:grid-cols-3
       ">
-        <MidCard path={"/dua-audio"} text={"Last Read"} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
-        <MidCard path={"/blog"} text={"Blog"} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
-        <MidCard path={"/ruqyah"} text={"Ruqyah"} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
+        <MidCard path={"/dua-audio"} text={titles.options[0]} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
+        <MidCard path={"/blog"} text={titles.options[1]} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
+        <MidCard path={"/ruqyah"} text={titles.options[2]} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
         <MidCard path={"/#"} text={""} />
-        <MidCard path={"/#"} text={""}  />
-        <MidCard path={"/dua-audio"} text={"Dua Audio"} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
+        <MidCard path={"/#"} text={""} />
+        <MidCard path={"/dua-audio"} text={titles.options[3]} midCard={"xs:flex-col xs:gap-3 sm:flex-col sm:gap-3"} />
       </div>
     </div>
   );

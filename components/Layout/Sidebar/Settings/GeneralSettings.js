@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import staticTitles from "../../../../assets/staticTitles.json";
 
 const GeneralSettings = () => {
   const [isArabic, setArabic] = useState(JSON.parse(localStorage.getItem("showArabic") ?? true));
@@ -6,19 +8,25 @@ const GeneralSettings = () => {
   const [isTransliteration, setTransliteration] = useState(JSON.parse(localStorage.getItem("showTransliteration")));
   const [isRefference, setRefference] = useState(JSON.parse(localStorage.getItem("showRefference")));
 
+  const [titles, setTitles] = useState(JSON.parse(JSON.stringify(staticTitles["homepage"]["en"]["rightSidebar"]["general"])));
+
+  const language = useSelector((state) => state.language.language);
+
   useEffect(() => {
     localStorage.setItem("showArabic", isArabic);
     localStorage.setItem("showTranslation", isTranslation);
     localStorage.setItem("showTransliteration", isTransliteration);
     localStorage.setItem("showRefference", isRefference);
+
+    setTitles(JSON.parse(JSON.stringify(staticTitles["homepage"][language]["rightSidebar"]["general"])));
   }, [isArabic, isTranslation, isTransliteration, isRefference]);
 
   return (
     <div className="flex flex-col py-2 px-4  animate-scale-down">
-      <CheckboxList onClick={() => setArabic(!isArabic)} state={isArabic} name="Show Arabic" />
-      <CheckboxList onClick={() => setTranslation(!isTranslation)} state={isTranslation} name="Show Translation" />
-      <CheckboxList onClick={() => setTransliteration(!isTransliteration)} state={isTransliteration} name="Show Transliteration" />
-      <CheckboxList onClick={() => setRefference(!isRefference)} state={isRefference} name="Show Refference" />
+      <CheckboxList onClick={() => setArabic(!isArabic)} state={isArabic} name={titles.options[0]} />
+      <CheckboxList onClick={() => setTranslation(!isTranslation)} state={isTranslation} name={titles.options[1]} />
+      <CheckboxList onClick={() => setTransliteration(!isTransliteration)} state={isTransliteration} name={titles.options[2]} />
+      <CheckboxList onClick={() => setRefference(!isRefference)} state={isRefference} name={titles.options[3]} />
     </div>
   );
 };

@@ -1,0 +1,42 @@
+{
+  "homepage": {
+    "en": {
+      "header": "Homepage",
+      "leftSidebar": ["Home", "All Duas", "Memorize", "Bookmark", "Ruqayh"],
+      "options": ["Last Read", "Blog", "Ruqayh", "Dua Audio"],
+      "categoryTitle": "Categories Of Dua",
+      "categoryMore": "More Categories",
+      "rightSidebar": {
+        "title": "Settings",
+        "language": "Language Settings",
+        "general": {
+          "title": "General Settings",
+          "options": ["Show Arabic", "Show Translation", "Show Transliteration", "Show Refference"]
+        },
+        "font": {
+          "title": "Font Settings",
+          "options": ["Translation Font Size", "Select Arabic Script", "Arabic Font", "Arabic Font Size"]
+        }
+      }
+    },
+    "bn": {
+      "header": "হোমপেজ",
+      "leftSidebar": ["হোম", "সব দোয়া", "মুখস্থ", "বুকমার্ক", "রুকিয়াহ"],
+      "options": ["সর্বশেষ", "ব্লগ", "রুকিয়াহ", "দোয়া অডিও"],
+      "categoryTitle": "দোয়া ক্যাটাগরি",
+      "categoryMore": "আরও ক্যাটাগরি",
+      "rightSidebar": {
+        "title": "সেটিংস",
+        "language": "ভাষা সেটিংস",
+        "general": {
+          "title": "সাধারণ সেটিংস",
+          "options": ["আরবী দেখুন", "অনুবাদ দেখুন", "উচ্চারণ দেখুন", "রেফারেন্স দেখুন"]
+        },
+        "font": {
+          "title": "ফন্ট সেটিংস",
+          "options": ["অনুবাদ ফন্ট সাইজ", "এরাবিক স্ক্রিপ্ট সিলেক্ট করুন", "এরাবিক ফন্ট সিলেক্ট করুন", "Arabic ফন্ট সাইজ"]
+        }
+      }
+    }
+  }
+}
