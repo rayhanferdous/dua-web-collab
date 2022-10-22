@@ -12,6 +12,7 @@ const DuaCard = ({ dua }) => {
 
   const language = useSelector((state) => state.language.language);
   const generalSettings = useSelector(({ generalSettings }) => generalSettings.value);
+  const { arabicFont, translationFont, selectedScript, selectedFont } = useSelector(({ fontSettings }) => fontSettings.value);
 
   const getNumberString = (number) => {
     if (language === "bn") {
@@ -29,7 +30,7 @@ const DuaCard = ({ dua }) => {
     return () => {
       setAnimation(true);
     };
-  }, [dua[0].dua_id, language, generalSettings]);
+  }, [dua[0].dua_id, language, generalSettings, arabicFont, translationFont, selectedScript, selectedFont]);
 
   return (
     <div id={`${dua[0].dua_id}`} className="bg-red-100 rounded-2lg my-5 dark:bg-[#223449]">
@@ -41,17 +42,28 @@ const DuaCard = ({ dua }) => {
               <div className="w-full">
                 {/* Body */}
                 {eval(`dua[index].top_${language}`) !== null && (
-                  <p className=" my-5 text-title text-justify font-inter font-normal">{eval(`dua[index].top_${language}`)}</p>
+                  <p className="my-5 text-title text-justify font-inter font-normal" style={{ fontSize: `${translationFont}px` }}>
+                    {eval(`dua[index].top_${language}`)}
+                  </p>
                 )}
                 {/* Arabic */}
 
                 {dua[index].dua_arabic !== null && isArabic && (
-                  <p className=" my-5 text-title text-right leading-loose font-kgfq text-3xl">{dua[index].dua_arabic}</p>
+                  <p
+                    className=" my-5 text-title text-right leading-loose font-kgfq"
+                    style={{
+                      fontSize: `${arabicFont}px`,
+                      fontFamily: `${selectedFont}`,
+                    }}>
+                    {dua[index].dua_arabic}
+                  </p>
                 )}
                 {/* transliteration_en */}
 
                 {eval(`dua[index].transliteration_${language}`) !== null && isTransliteration && (
-                  <p className=" my-5 text-title text-justify font-inter font-normal">{eval(`dua[index].transliteration_${language}`)}</p>
+                  <p className=" my-5 text-title text-justify font-inter font-normal" style={{ fontSize: `${translationFont}px` }}>
+                    {eval(`dua[index].transliteration_${language}`)}
+                  </p>
                 )}
                 {/* {dua[index].transliteration_bn !== null && isTransliteration && (
                   <p className=" my-5 text-title text-justify font-kgfq font-normal">{dua[index].transliteration_bn}</p>
@@ -59,14 +71,18 @@ const DuaCard = ({ dua }) => {
 
                 {/* translation_en */}
                 {eval(`dua[index].translation_${language}`) !== null && isTranslation && (
-                  <p className=" my-5 text-title text-justify font-inter font-normal">{eval(`dua[index].translation_${language}`)}</p>
+                  <p className=" my-5 text-title text-justify font-inter font-normal" style={{ fontSize: `${translationFont}px` }}>
+                    {eval(`dua[index].translation_${language}`)}
+                  </p>
                 )}
                 {/* {dua[index].translation_bn !== null && isTransliteration && (
                   <p className=" my-5 text-title text-justify font-inter font-normal">{dua[index].translation_bn}</p>
                 )} */}
                 {/* Dua Bottom Section */}
                 {eval(`dua[index].bottom_${language}`) !== null && (
-                  <p className=" my-5 text-title text-justify font-inter font-normal">{eval(`dua[index].bottom_${language}`)}</p>
+                  <p className=" my-5 text-title text-justify font-inter font-normal" style={{ fontSize: `${translationFont}px` }}>
+                    {eval(`dua[index].bottom_${language}`)}
+                  </p>
                 )}
 
                 {dua.length > 1 && index !== dua.length - 1 && <div className="bg-devider h-[1px] dark:bg-[#2F4B5F]" />}

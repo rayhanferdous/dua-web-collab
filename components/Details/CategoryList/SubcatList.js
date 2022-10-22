@@ -9,7 +9,9 @@ const SubCatList = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(SetSelectedSection(eval(`data.result[0].subcat_name_${language}`)));
+    if (data) {
+      dispatch(SetSelectedSection(eval(`data.result[0].subcat_name_${language}`)));
+    }
   }, [language]);
 
   return (

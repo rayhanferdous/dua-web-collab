@@ -6,6 +6,7 @@ import DuaCatSlicer from "./feature/DuaCatSlicer";
 import DuaDailySlicer from "./feature/DuaDailySlicer";
 import DuaInfoSlicer from "./feature/DuaInfoSlicer";
 import DuaSlicer from "./feature/DuaSlicer";
+import FontSettingsSlicer from "./feature/FontSettingsSlicer";
 import GeneralSettingsSlicer from "./feature/GeneralSettingsSlicer";
 import GlobalDataSlicer from "./feature/GlobalDataSlicer";
 import LanguageSlicer from "./feature/LanguageSlicer";
@@ -34,5 +35,6 @@ export const store = configureStore({
     language: LanguageSlicer,
     selectedSection: SelectedSectionSlicer,
     generalSettings: GeneralSettingsSlicer,
+    fontSettings: FontSettingsSlicer,
   },
 });
