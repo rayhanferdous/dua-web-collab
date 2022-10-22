@@ -5,12 +5,13 @@ import DuaTopbar from "./DuaTopbar";
 
 const DuaCard = ({ dua }) => {
   const [animation, setAnimation] = useState(false);
-  const isArabic = JSON.parse(localStorage.getItem("showArabic"));
-  const isTranslation = JSON.parse(localStorage.getItem("showTranslation"));
-  const isTransliteration = JSON.parse(localStorage.getItem("showTransliteration"));
-  const isRefference = JSON.parse(localStorage.getItem("showRefference"));
+  const [isArabic, setIsArabic] = useState(JSON.parse(localStorage.getItem("showArabic")));
+  const [isTranslation, setIsTranslation] = useState(JSON.parse(localStorage.getItem("showTranslation")));
+  const [isTransliteration, setIsTransliteration] = useState(JSON.parse(localStorage.getItem("showTransliteration")));
+  const [isRefference, setIsRefference] = useState(JSON.parse(localStorage.getItem("showRefference")));
 
   const language = useSelector((state) => state.language.language);
+  const generalSettings = useSelector(({ generalSettings }) => generalSettings.value);
 
   const getNumberString = (number) => {
     if (language === "bn") {
@@ -19,18 +20,16 @@ const DuaCard = ({ dua }) => {
     return number;
   };
 
-  useEffect(
-    () => {
-      return () => {
-        setAnimation(true);
-      };
-    },
-    [dua[0].dua_id, language],
-    isArabic,
-    isTranslation,
-    isTransliteration,
-    isRefference
-  );
+  useEffect(() => {
+    setIsArabic(generalSettings.showArabic);
+    setIsRefference(generalSettings.showReference);
+    setIsTranslation(generalSettings.showTranslation);
+    setIsTransliteration(generalSettings.showTransliteration);
+
+    return () => {
+      setAnimation(true);
+    };
+  }, [dua[0].dua_id, language, generalSettings]);
 
   return (
     <div id={`${dua[0].dua_id}`} className="bg-red-100 rounded-2lg my-5 dark:bg-[#223449]">
@@ -59,7 +58,7 @@ const DuaCard = ({ dua }) => {
                 )} */}
 
                 {/* translation_en */}
-                {eval(`dua[index].translation_${language}`) !== null && isTransliteration && (
+                {eval(`dua[index].translation_${language}`) !== null && isTranslation && (
                   <p className=" my-5 text-title text-justify font-inter font-normal">{eval(`dua[index].translation_${language}`)}</p>
                 )}
                 {/* {dua[index].translation_bn !== null && isTransliteration && (

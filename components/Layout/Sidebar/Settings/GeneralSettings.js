@@ -1,32 +1,88 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import staticTitles from "../../../../assets/staticTitles.json";
+import { SetGeneralSettings } from "../../../../dataStore/feature/GeneralSettingsSlicer";
 
 const GeneralSettings = () => {
   const [isArabic, setArabic] = useState(JSON.parse(localStorage.getItem("showArabic") ?? true));
   const [isTranslation, setTranslation] = useState(JSON.parse(localStorage.getItem("showTranslation")));
   const [isTransliteration, setTransliteration] = useState(JSON.parse(localStorage.getItem("showTransliteration")));
-  const [isRefference, setRefference] = useState(JSON.parse(localStorage.getItem("showRefference")));
+  const [isReference, setReference] = useState(JSON.parse(localStorage.getItem("showReference")));
 
   const [titles, setTitles] = useState(JSON.parse(JSON.stringify(staticTitles["homepage"]["en"]["rightSidebar"]["general"])));
 
   const language = useSelector((state) => state.language.language);
+  const settings = useSelector((state) => state.generalSettings.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem("showArabic", isArabic);
     localStorage.setItem("showTranslation", isTranslation);
     localStorage.setItem("showTransliteration", isTransliteration);
-    localStorage.setItem("showRefference", isRefference);
+    localStorage.setItem("showReference", isReference);
+
+    dispatch(
+      SetGeneralSettings({
+        showArabic: isArabic,
+        showTranslation: isTranslation,
+        showTransliteration: isTransliteration,
+        showReference: isReference,
+      })
+    );
 
     setTitles(JSON.parse(JSON.stringify(staticTitles["homepage"][language]["rightSidebar"]["general"])));
-  }, [isArabic, isTranslation, isTransliteration, isRefference]);
+  }, [isArabic, isTranslation, isTransliteration, isReference]);
+
+  const handleSetArabic = () => {
+    setArabic(!isArabic);
+    localStorage.setItem("showArabic", !isArabic);
+    dispatch(
+      SetGeneralSettings({
+        ...settings,
+        showArabic: !isArabic,
+      })
+    );
+  };
+
+  const handleSetTranslation = () => {
+    setTranslation(!isTranslation);
+    localStorage.setItem("showTranslation", !isTranslation);
+    dispatch(
+      SetGeneralSettings({
+        ...settings,
+        showTranslation: !isTranslation,
+      })
+    );
+  };
+
+  const handleSetTransliteration = () => {
+    setTransliteration(!isTransliteration);
+    localStorage.setItem("showTransliteration", !isTransliteration);
+    dispatch(
+      SetGeneralSettings({
+        ...settings,
+        showTransliteration: !isTransliteration,
+      })
+    );
+  };
+
+  const handleSetReference = () => {
+    setReference(!isReference);
+    localStorage.setItem("showReference", !isReference);
+    dispatch(
+      SetGeneralSettings({
+        ...settings,
+        showReference: !isReference,
+      })
+    );
+  };
 
   return (
     <div className="flex flex-col py-2 px-4  animate-scale-down">
-      <CheckboxList onClick={() => setArabic(!isArabic)} state={isArabic} name={titles.options[0]} />
-      <CheckboxList onClick={() => setTranslation(!isTranslation)} state={isTranslation} name={titles.options[1]} />
-      <CheckboxList onClick={() => setTransliteration(!isTransliteration)} state={isTransliteration} name={titles.options[2]} />
-      <CheckboxList onClick={() => setRefference(!isRefference)} state={isRefference} name={titles.options[3]} />
+      <CheckboxList onClick={handleSetArabic} state={isArabic} name={titles.options[0]} />
+      <CheckboxList onClick={handleSetTranslation} state={isTranslation} name={titles.options[1]} />
+      <CheckboxList onClick={handleSetTransliteration} state={isTransliteration} name={titles.options[2]} />
+      <CheckboxList onClick={handleSetReference} state={isReference} name={titles.options[3]} />
     </div>
   );
 };

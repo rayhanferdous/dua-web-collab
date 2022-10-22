@@ -6,6 +6,7 @@ import DuaCatSlicer from "./feature/DuaCatSlicer";
 import DuaDailySlicer from "./feature/DuaDailySlicer";
 import DuaInfoSlicer from "./feature/DuaInfoSlicer";
 import DuaSlicer from "./feature/DuaSlicer";
+import GeneralSettingsSlicer from "./feature/GeneralSettingsSlicer";
 import GlobalDataSlicer from "./feature/GlobalDataSlicer";
 import LanguageSlicer from "./feature/LanguageSlicer";
 import RuqyahSlicer from "./feature/RuqyahCatSlicer";
@@ -32,5 +33,6 @@ export const store = configureStore({
     globalData: GlobalDataSlicer,
     language: LanguageSlicer,
     selectedSection: SelectedSectionSlicer,
+    generalSettings: GeneralSettingsSlicer,
   },
 });
