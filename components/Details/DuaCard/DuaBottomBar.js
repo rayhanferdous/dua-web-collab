@@ -1,11 +1,12 @@
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 import BookmarkPopup from "../../Modal/BookmarkPopup/BookmarkPopup";
 import PlanPopup from "../../Modal/PlanPopup/PlanPopup";
 import ReportPopup from "../../Modal/ReportUsPop/ReportPopup";
 import SharePopup from "../../Modal/SharePopup/SharePopup";
-import { useTheme } from "next-themes";
-import React, { useState } from "react";
-import Rodal from "rodal";
-import "rodal/lib/rodal.css";
 
 const DuaBottomBar = (props) => {
   const [bookmarkShow, setBookmark] = useState(false);
@@ -13,11 +14,15 @@ const DuaBottomBar = (props) => {
   const [shareShow, setShareShow] = useState(false);
   const [reportShow, setReportShow] = useState(false);
   const { theme } = useTheme();
+  const language = useSelector(({ language }) => language.language);
+
+  useEffect(() => {}, [language]);
+
   return (
     <div className="">
       <div className="w-full h-[1px] mt-5 bg-[#E2E2E2] dark: dark:hidden"></div>
       <div className="flex flex-row justify-between px-6">
-        <div className=" py-4">play</div>
+        <div className=" py-4">{language === "bn" ? "প্লে" : "play"}</div>
         {props.audio !== null && (
           <audio controls>
             <source src={props.audio} type="audio/mpeg" />

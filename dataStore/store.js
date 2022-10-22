@@ -12,6 +12,7 @@ import RuqyahSlicer from "./feature/RuqyahCatSlicer";
 import RuqyahDetailsSlicer from "./feature/RuqyahDetailsSlicer";
 import RuqyahSubCatSlicer from "./feature/RuqyahSubCatSlicer";
 import SearchSlicer from "./feature/SearchSlicer";
+import SelectedSectionSlicer from "./feature/SelectedSectionSlicer";
 import SubCatSlicer from "./feature/SubCatSlicer";
 
 export const store = configureStore({
@@ -30,5 +31,6 @@ export const store = configureStore({
     duaSearch: SearchSlicer,
     globalData: GlobalDataSlicer,
     language: LanguageSlicer,
+    selectedSection: SelectedSectionSlicer,
   },
 });

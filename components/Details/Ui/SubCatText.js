@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { SetSelectedSection } from "../../../dataStore/feature/SelectedSectionSlicer";
 import DuaList from "../CategoryList/DuaList";
 
 export default function SubCatText(props) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
   const handleClick = (e) => {
     e.preventDefault();
     setIsOpen(!isOpen);
+    dispatch(SetSelectedSection(props.text));
   };
 
   return (
