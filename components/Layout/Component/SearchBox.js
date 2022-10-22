@@ -1,16 +1,12 @@
-import SearchIcon from "../../../assets/searchIcon";
-import React, { useState } from "react";
-import InfoIcon from "../../../assets/infoIcon";
-import Dropdown from "./AdvanceSearch/Dropdown";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import InfoPopup from "./InfoPopup/InfoPopup";
-import OptionIcon from "../../../assets/optionIcon";
+import SearchIcon from "../../../assets/searchIcon";
 import SearchApi from "../../../dataStore/api/SearchApi";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import InfoPopup from "./InfoPopup/InfoPopup";
 
 const SearchBox = ({ hint }) => {
   const router = useRouter();
@@ -19,13 +15,14 @@ const SearchBox = ({ hint }) => {
   const { theme } = useTheme();
   const [searchText, setSearchText] = useState({ text: "" });
   const data = useSelector((state) => state.duaSearch.data);
+  const language = useSelector((state) => state.language.language);
 
   // useState
   const [isEnter, setEnter] = useState("");
 
   useEffect(() => {
     SearchApi.duaSearch(searchText, "en");
-  }, [searchText, isEnter, data]);
+  }, [searchText, isEnter, data, language]);
 
   return (
     <>
@@ -39,7 +36,7 @@ const SearchBox = ({ hint }) => {
               <input
                 onKeyDown={(e) => setEnter(e.key === "Enter" ? setSearchText({ text: e.target.value }, router.push("/search")) : "")}
                 className="placeholder:text-mute-grey dark:placeholder:text-[#96a2b4] block placeholder:font-inter placeholder:text-sm bg-red-100 w-full  py-3 pl-12 pr-3 shadow-sm focus:outline-none focus:border- focus:ring- focus:ring-1 sm:text-sm dark:bg-[#223449] dark:placeholder:opacity-[.6]"
-                placeholder={hint ?? "Search by Dua Name"}
+                placeholder={hint ?? `${language === "bn" ? "দোয়া সার্চ করুন" : "Search by Dua Name"}`}
                 type="text"
                 name="search"
               />
@@ -59,7 +56,7 @@ const SearchBox = ({ hint }) => {
               <input
                 className="bg-gray-100  dark:hover:text-gray-400 dark:text-gray-500 cursor-pointer hover:bg-gray-200 hover:text-gray-500 text-gray-400 px-4 py-2  absolute right-1 top-1"
                 type="submit"
-                value="Search"
+                value={language === "bn" ? "সার্চ করুন" : "Search"}
               />
             </div>
           </div>

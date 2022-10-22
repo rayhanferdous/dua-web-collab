@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import CatList from "./Sidebar/RightBarMenu";
-import LanguageSettings from "./Sidebar/Settings/LanguageSettings";
-import GeneralSettings from "./Sidebar/Settings/GeneralSettings";
-import FontSettings from "./Sidebar/Settings/FontSettings";
-import AppearanceSettings from "./Sidebar/Settings/AppearanceSettings";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import staticTitles from "../../assets/staticTitles.json";
 import { ScriptDropdown } from "../../dataStore/feature/GlobalDataSlicer";
+import CatList from "./Sidebar/RightBarMenu";
+import FontSettings from "./Sidebar/Settings/FontSettings";
+import GeneralSettings from "./Sidebar/Settings/GeneralSettings";
+import LanguageSettings from "./Sidebar/Settings/LanguageSettings";
 
 function RightBar() {
   const scriptDropdown = useSelector((state) => state.globalData.scriptDropdown);
+  const language = useSelector((state) => state.language.language);
   const dispatch = useDispatch();
+
+  const [titles, setTitles] = useState(JSON.parse(JSON.stringify(staticTitles["homepage"]["en"]["rightSidebar"])));
 
   const globalDataHandler = () => {
     dispatch(ScriptDropdown(scriptDropdown === true ? false : ""));
@@ -25,6 +28,10 @@ function RightBar() {
       setDropdown(id);
     }
   }
+
+  useEffect(() => {
+    setTitles(JSON.parse(JSON.stringify(staticTitles["homepage"][language]["rightSidebar"])));
+  }, [language]);
 
   return (
     <div
@@ -45,32 +52,28 @@ function RightBar() {
           sm:pt-4
           
           `}>
-          Settings
+          {titles.title}
         </div>
 
         <div className="xs:pb-2">
           <CatList
             active={dropdown === 1 ? true : false}
             onClick={() => handleDropdown(1)}
- 
-            text="Language Settings"
+            text={titles.language}
             child={dropdown === 1 && <LanguageSettings />}
           />
           <CatList
             active={dropdown === 2 ? true : false}
             onClick={() => handleDropdown(2)}
-
-            text="General Settings"
+            text={titles.general.title}
             child={dropdown === 2 && <GeneralSettings />}
           />
           <CatList
             active={dropdown === 3 ? true : false}
             onClick={() => handleDropdown(3)}
- 
-            text="Font Settings"
+            text={titles.font.title}
             child={dropdown === 3 && <FontSettings scriptDropdown={scriptDropdown} />}
           />
-         
         </div>
       </div>
     </div>

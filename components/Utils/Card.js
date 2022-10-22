@@ -1,7 +1,17 @@
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function Card({ link, title, subTitle, totalDua, onClick, midCard }) {
+  const language = useSelector((state) => state.language.language);
+
+  const getNumberString = (number) => {
+    if (language === "bn") {
+      return number.toLocaleString("bn-BD");
+    }
+    return number;
+  };
+
   return (
     <Link href={link}>
       <div onClick={onClick}>
@@ -10,15 +20,19 @@ function Card({ link, title, subTitle, totalDua, onClick, midCard }) {
             <div className=" flex items-center   h-15 w-15 mx-3.5 "></div>
             <div className="text-left">
               <p className="text-title text-sm font-medium mb-1 xs:font-medium lg:text-base ">{title}</p>
-              {subTitle && <p className="text-mute-grey text-xs ">Subcategory: {subTitle}</p>}
+              {subTitle && (
+                <p className="text-mute-grey text-xs ">
+                  {language === "bn" ? "সাবক্যাটাগরি" : "Subcategory"}: {getNumberString(subTitle)}
+                </p>
+              )}
             </div>
           </div>
           {totalDua && (
             <div className="mr-5 flex flex-row items-center">
               <div className="bg-devider w-0.1 mr-3 h-12 dark:hidden"></div>
               <div className="flex flex-col justify-center items-center">
-                <p className="font-medium xs:text-sm ">{totalDua}</p>
-                <p className="text-mute-grey text-xs ">Duas</p>
+                <p className="font-medium xs:text-sm ">{getNumberString(totalDua)}</p>
+                <p className="text-mute-grey text-xs ">{language === "bn" ? "দোয়া" : "Duas"}</p>
               </div>
             </div>
           )}

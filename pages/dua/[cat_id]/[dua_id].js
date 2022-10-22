@@ -1,14 +1,17 @@
 import { useEffect } from "react";
-import DuaCatApi from "../../../dataStore/api/DuaCatApi";
-import Master from "../../../components/Layout/Master";
-import DuaContainer from "../../../components/Details/DuaContainer";
-import CatContainer from "../../../components/Details/CatContainer";
-import SectionCard from "../../../components/Details/DuaCard/SectionCard";
-import DuaCard from "../../../components/Details/DuaCard/DuaCard";
 import { useSelector } from "react-redux";
+import CatContainer from "../../../components/Details/CatContainer";
+import DuaCard from "../../../components/Details/DuaCard/DuaCard";
+import SectionCard from "../../../components/Details/DuaCard/SectionCard";
+import DuaContainer from "../../../components/Details/DuaContainer";
+import Master from "../../../components/Layout/Master";
+import DuaCatApi from "../../../dataStore/api/DuaCatApi";
 
 const DuaDetails = () => {
   const selectedDua = useSelector((state) => state.subCat.allDuaOfCatID);
+  const selectedSection = useSelector((state) => state.selectedSection.value);
+  const language = useSelector((state) => state.language.language);
+
   var flattenAllDuas = selectedDua?.flat();
   let sameIDDuasGrouped = [];
 
@@ -23,17 +26,15 @@ const DuaDetails = () => {
   }
   useEffect(() => {
     DuaCatApi.getCategory();
-  }, []);
+  }, [selectedSection, language]);
 
   return (
     <Master ns={true}>
-
-        <CatContainer title={"Categories"} />
-        <DuaContainer ns={true}>
-          <SectionCard text="The servant is dependent on his Lord" />
-          {sameIDDuasGrouped && sameIDDuasGrouped?.map((item) => <DuaCard dua={item} />)}
-        </DuaContainer>
-
+      <CatContainer title={language === "bn" ? "ক্যাটাগরি" : "Categories"} />
+      <DuaContainer ns={true}>
+        <SectionCard text={selectedSection} />
+        {sameIDDuasGrouped && sameIDDuasGrouped?.map((item) => <DuaCard dua={item} />)}
+      </DuaContainer>
     </Master>
   );
 };

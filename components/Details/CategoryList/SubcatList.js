@@ -1,8 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SetSelectedSection } from "../../../dataStore/feature/SelectedSectionSlicer";
 import SubCatText from "../ui/SubCatText";
-import { useSelector } from "react-redux";
 
 const SubCatList = (props) => {
   const data = useSelector((state) => state.subCat.data);
+  const language = useSelector((state) => state.language.language);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(SetSelectedSection(eval(`data.result[0].subcat_name_${language}`)));
+    }
+  }, [language]);
 
   return (
     <div className="ml-12 border-l-2 border-dotted my-2 border-">
@@ -12,7 +22,7 @@ const SubCatList = (props) => {
             ?.filter((filterItem) => {
               return filterItem.cat_id === props.catId;
             })
-            .map((item) => <SubCatText catId={item.cat_id} subCatId={item.subcat_id} text={item.subcat_name_en} />)}
+            .map((item) => <SubCatText catId={item.cat_id} subCatId={item.subcat_id} text={eval(`item.subcat_name_${language}`)} />)}
       </div>
     </div>
   );
