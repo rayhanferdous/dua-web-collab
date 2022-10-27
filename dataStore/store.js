@@ -16,6 +16,7 @@ import RuqyahSubCatSlicer from "./feature/RuqyahSubCatSlicer";
 import SearchSlicer from "./feature/SearchSlicer";
 import SelectedSectionSlicer from "./feature/SelectedSectionSlicer";
 import SubCatSlicer from "./feature/SubCatSlicer";
+import PlansSlicer from "./feature/MemorizePlanSlicer";
 
 export const store = configureStore({
   reducer: {
@@ -36,5 +37,6 @@ export const store = configureStore({
     selectedSection: SelectedSectionSlicer,
     generalSettings: GeneralSettingsSlicer,
     fontSettings: FontSettingsSlicer,
+    memorizePlans: PlansSlicer,
   },
 });

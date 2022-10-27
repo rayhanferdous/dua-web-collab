@@ -16,7 +16,7 @@ const DuaBottomBar = (props) => {
   const { theme } = useTheme();
   const language = useSelector(({ language }) => language.language);
 
-  useEffect(() => {}, [language]);
+  useEffect(() => { }, [language]);
 
   return (
     <div className="">
@@ -80,7 +80,7 @@ const DuaBottomBar = (props) => {
         customStyles={{ backgroundColor: "transparent", boxShadow: "none" }}
         visible={planShow}
         onClose={() => setPlanShow(false)}>
-        <PlanPopup onClose={() => setPlanShow(false)} />
+        <PlanPopup onClose={() => setPlanShow(false)} dua={props.dua} />
       </Rodal>
       <Rodal
         showCloseButton={false}
