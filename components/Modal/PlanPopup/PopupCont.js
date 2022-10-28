@@ -40,7 +40,7 @@ function PopupCont({ onClose, dua }) {
   }
 
   useEffect(() => {
-    dispatch(SetPlans(JSON.parse(localStorage.getItem("memorize_plans")) || [{ id: 0, name: "Favorites", targetDays: 5, duas: [] },]))
+    dispatch(SetPlans(JSON.parse(localStorage.getItem("memorize_plans")) || [{ id: 0, name: "Favorites", targetDays: 5, createdAt: new Date().toLocaleDateString(), duas: [] },]))
   }, [selectedPlan, newPlan])
 
   return (

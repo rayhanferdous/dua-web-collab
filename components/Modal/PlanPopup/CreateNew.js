@@ -43,7 +43,7 @@ function CreateNew({ newPlan, setNewPlan }) {
               console.log(e.target.value);
               let value = e.target.value;
               setTargetDays(value);
-              setNewPlan({ ...newPlan, name, targetDays: value });
+              setNewPlan({ ...newPlan, name, targetDays: value, createdAt: new Date().toLocaleDateString() });
             }}
             placeholder={language === "bn" ? "আনুমানিক দিন" : "Target days"}
           />

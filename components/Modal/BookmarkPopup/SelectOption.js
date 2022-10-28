@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 export default function SelectOption({ selectedPlan, setSelectedPlan }) {
   const plans = useSelector(state => state.memorizePlans.plans);
-  const [selected, setSelected] = useState(plans ? plans[0] : { id: 0, name: "Favorites", targetDays: 5 });
+  const [selected, setSelected] = useState(plans ? plans[0] : { id: 0, name: "Favorites", targetDays: 5, createdAt: new Date().toLocaleDateString(), duas: [] });
 
   useEffect(() => {
     if (selectedPlan)
