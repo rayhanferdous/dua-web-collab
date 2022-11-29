@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @font-face {
   font-family: "kgfq";
   src: url("../public/fonts/KFGQ_hafs.ttf");
@@ -31,6 +32,7 @@ body {
 .collapse-css-transition {
   transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .logo {
   display: block;
   text-indent: -9999px;
@@ -113,6 +115,7 @@ body {
   background-color: #cccfd2;
   min-height: 80px;
 }
+
 input[type="range"] {
   -webkit-appearance: none;
   height: 5px;
@@ -144,16 +147,22 @@ input[type="range"]::-webkit-slider-thumb {
   transition: background 0.3s ease-in-out;
 }
 
+.progress {
+  background-color: #3b91ca;
+}
+
 @media (max-width: 767px) {
   .mbl-grad {
     background: rgb(255, 255, 255);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 1) 100%);
   }
+
   .mbl-scrl-home {
     position: relative;
     overflow-y: auto;
     height: calc(100vh - 10px);
   }
+
   .scrl::-webkit-scrollbar-track {
     margin: 6rem 0rem 12rem 0rem;
   }
@@ -189,5 +198,4 @@ input[type="range"]::-webkit-slider-thumb {
   }
 }
 
-@media (min-width: 1920px) {
-}
+@media (min-width: 1920px) {}
